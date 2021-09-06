@@ -1,5 +1,5 @@
 class Solution {
-    public static List<String> letterCombinations(String digits) {
+    public List<String> letterCombinations(String digits) {
         if(digits.equals("")) return List.of();
         List<String> result = new ArrayList<String>();
         String[] map = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
@@ -7,7 +7,7 @@ class Solution {
         return result;
     }
 
-    public static void helper(List<String> result, String[] map, String str, String digits, int index){
+    public void helper(List<String> result, String[] map, String str, String digits, int index){
         int digit = digits.charAt(index) -'0';
         String tempStr;
         for(int i = 0; i < map[digit - 2].length(); i++){
@@ -16,7 +16,7 @@ class Solution {
                 result.add(tempStr);
                 continue;
             }
-            helper(result, map, tempStr, digits, index +  1);
+            helper(result, map, tempStr, digits, index + 1);
         }
         return;
     }
