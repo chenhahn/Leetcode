@@ -30,3 +30,26 @@ class Solution {
         
     }
 }
+
+//PriorityQueue
+
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>((a,b) -> a.val - b.val);
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        for(ListNode list: lists){
+            if(list != null){
+                pq.add(list);
+            }
+        }
+        while(!pq.isEmpty()){
+            ListNode node = pq.poll();
+            if(node.next != null) pq.add(node.next);
+            cur.next = node;
+            cur = cur.next;
+        }
+        return head.next;     
+    }
+}
