@@ -1,3 +1,9 @@
+/*
+    implement the variant of Binary Search O(logn)
+    1) If target < nums[left] <= nums[mid], then target is in left hand side of pivot
+    2) If target > nums[right] >= nums[mid], then target is in right hand side of pivot
+    *pivot is the rotated place of orignal array
+*/
 class Solution {
     public int search(int[] nums, int target) {
         if (nums == null || nums.length ==0 ) return -1;
