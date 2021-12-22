@@ -21,24 +21,24 @@ public class Solution {
                 intervals.add(new Interval(s[i], s[i + 1]));
             }
         }
-		Collections.sort(intervals, (a, b) -> {
-			if (a.start == b.start) {
-				return a.end - b.end;
-			}
-			return a.start - b.start;
-		});
-		
-		List<Interval> result = new ArrayList<>();
-		Interval pre = intervals.get(0);
-		for (int i = 1; i < intervals.size(); i++) {
-			Interval cur = intervals.get(i);
-			if (cur.start > pre.end) {
-				result.add(new Interval(pre.end, cur.start));
-				pre = cur;
-			} else {
-				pre.end = Math.max(pre.end, cur.end);
-			}
+	Collections.sort(intervals, (a, b) -> {
+		if (a.start == b.start) {
+			return a.end - b.end;
 		}
-		return result;
+		return a.start - b.start;
+	});
+
+	List<Interval> result = new ArrayList<>();
+	Interval pre = intervals.get(0);
+	for (int i = 1; i < intervals.size(); i++) {
+		Interval cur = intervals.get(i);
+		if (cur.start > pre.end) {
+			result.add(new Interval(pre.end, cur.start));
+			pre = cur;
+		} else {
+			pre.end = Math.max(pre.end, cur.end);
+		}
+	}
+	return result;
     }
 }
