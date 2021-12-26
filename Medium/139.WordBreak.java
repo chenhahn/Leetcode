@@ -27,3 +27,29 @@ For example: s = "abcd" and wordDict = ["a", "b", "c", "bc", "ab", "abc"]
 Space complexity: O(n), The depth of the recursion tree can go upto n.
 
 */
+
+// Dynamic Programming
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> wordDictSet = new HashSet<>(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+/*	
+Time complexity : O(n^3). There are two nested loops, and substring computation at each iteration. Overall that results in O(n^3)
+	time complexity.
+
+Space complexity : O(n). Length of p array is n+1.
+
+*/
