@@ -28,6 +28,36 @@ Space complexity: O(n), The depth of the recursion tree can go upto n.
 
 */
 
+// Recursion with memoization
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        return wordBreak(s, new HashSet<String>(wordDict), 0, new Boolean[s.length()]);
+    }
+    public boolean wordBreak(String s, Set<String> wordDict, int start, Boolean[] memo) {
+        if (start == s.length()) {
+           return true; 
+        }
+        if (memo[start] != null) {
+            return memo[start];
+        }
+        for (int end = start + 1; end <= s.length(); end++) {
+            if (wordDict.contains(s.substring(start, end)) && wordBreak(s, wordDict, end, memo)) {
+                return memo[start] = true;
+            }
+        }
+        return memo[start] = false;
+    }
+}
+/*	
+Time complexity : O(n^3). 
+
+take substring computation into account, it would finally be 1 + (1 + 2) + (1 + 2 +3) .... = n(n + 1)(n + 2) / 6
+d (c, cd) (b, bc, bcd), (a, ab, abc, abcd)
+s = "abcd" and wordDict = ["a", "b", "c", "bc", "ab", "abc"]
+ 
+Space complexity : O(n). The depth of recursion tree can go up to n.
+*/
+
 // Dynamic Programming
 
 class Solution {
