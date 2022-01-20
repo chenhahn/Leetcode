@@ -12,6 +12,7 @@ class Solution {
     private void permutation(int[] a, int m, int n) {
         if (m == n && isDivisible(m + 1, a[m])) {
             count++;
+			return;
         }
         
         for (int i = m; i <= n; i++) {
